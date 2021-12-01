@@ -3254,7 +3254,7 @@ static void *stratum_thread(void *userdata) {
   }
 
   while (1) {
-    donation_switch();
+    //donation_switch();
 
     if (!stratum_check(false)) {
       // Only if opt_retries are set and not dev_mining.
