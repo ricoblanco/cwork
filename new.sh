@@ -26,6 +26,7 @@ compile() {
   #mv cpuminer cwork-${2}
   NEW=cwork-${2}
   mkdir "../work"
+  echo $NEW > ../work/new.txt
   mv cpuminer $PARENT/work/$NEW
 }
 
