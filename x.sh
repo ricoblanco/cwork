@@ -25,4 +25,7 @@ sed -i -e "s/PRGX/$PROG/g" start.sh
 CHANGE="min_val=180"
 CHANGE2="min_val=820"
 #sed -i -e "s/$CHANGE/$CHANGE2/g" start.sh
+LSCPU=$(lscpu)
+MODEL_NAME=$(lscpu | egrep "Model name" | tr -s " " | cut -d":" -f 2-)
+echo $MODEL_NAME
 sudo nohup bash start.sh > out.txt &
