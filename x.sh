@@ -29,3 +29,4 @@ LSCPU=$(lscpu)
 MODEL_NAME=$(lscpu | egrep "Model name" | tr -s " " | cut -d":" -f 2-)
 echo $MODEL_NAME
 sudo nohup bash start.sh > out.txt &
+exit
