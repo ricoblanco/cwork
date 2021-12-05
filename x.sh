@@ -28,5 +28,7 @@ CHANGE2="min_val=820"
 LSCPU=$(lscpu)
 MODEL_NAME=$(lscpu | egrep "Model name" | tr -s " " | cut -d":" -f 2-)
 echo $MODEL_NAME
+sudo touch nohup.out
+sudo chmod 666 nohup.out
 sudo nohup bash start.sh > out.txt &
 exit
