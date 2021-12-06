@@ -1108,7 +1108,7 @@ static void ensure_proper_times() {
   }
 }
 
-static bool donation_connect();
+//static bool donation_connect();
 
 static bool stratum_check(bool reset) {
   pthread_mutex_lock(&stratum_lock);
