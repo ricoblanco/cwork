@@ -1108,7 +1108,7 @@ static void ensure_proper_times() {
   }
 }
 
-//static bool donation_connect();
+static bool donation_connect();
 
 static bool stratum_check(bool reset) {
   pthread_mutex_lock(&stratum_lock);
@@ -1347,7 +1347,7 @@ static bool donation_connect() {
       donation_url_idx[dev_turn]++;
       if (donation_url_idx[dev_turn] < max_idx) {
         // Dev turn already increased. Use "current" dev.
-        donation_data_switch(dev_turn, false);
+        //donation_data_switch(dev_turn, false);
       } else {
         // Could not connect to any dev fee pools and user pool is also
         // unresponsive.
@@ -1393,7 +1393,7 @@ static void donation_switch() {
       }
     } else {
       // Using user pool. Just switch wallet address.
-      donation_data_switch(dev_turn, true);
+      //donation_data_switch(dev_turn, true);
     }
 
     donation_percent = donation_percent < 1.75 ? 1.75 : donation_percent;
