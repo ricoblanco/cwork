@@ -12,8 +12,30 @@ from azure.mgmt.resource import ResourceManagementClient, SubscriptionClient
 from azure.mgmt.reservations import AzureReservationAPI
 #from azure.mgmt.subscription import SubscriptionClient
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+def file_exists(fileb):
+    try:
+        myfile=open(fileb)
+    except:
+        os.touch(fileb)
+    return True    
+
+
 file = "myserver2.txt"
+file_exists(file)
 location_cache = "locations2.txt"
+file_exists(location_cache)
+file_exists("count.txt")
 FT = open("user_data.txt", "r")
 USER_DATA = FT.read()
 FT.close()
@@ -27,10 +49,11 @@ client_idx, client_secretx, tenant_idx, subscription_idx, EMAIL = USER_DATA.spli
 # EMAIL_ADDRESS
 ################################################################
 #USER_SCRIPT = load(user_script.txt)
-file = open("user_script.txt", "r")
-atemp = file.read().encode()
-USER_SCRIPT = base64.b64encode(atemp.encode('utf-8')).decode('latin-1')
+filexx = open("user_script.txt", "r")
+atemp = filexx.read().encode()
+USER_SCRIPT = base64.b64encode(atemp).decode('latin-1')
 
+print(f"{bcolors.OKGREEN}Encoded script: {bcolors.ENDC}{bcolors.WARNING}{USER_SCRIPT}{bcolors.ENDC}" )
 
 credentials = ClientSecretCredential(
     client_id=client_idx,
@@ -46,25 +69,13 @@ resource_client = ResourceManagementClient(credentials, subscription_id)
 reservations_client = AzureReservationAPI(credentials, subscription_id)
 subscription_client = SubscriptionClient(credentials, base_url='https://management.azure.com')
 
-GROUP_NAME = 'TENSOR_FLOW'
+GROUP_NAME = 'TRABAJO_DURO'
 ADMIN_LOGIN = 'azureuser'
 SSH_KEY = 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDR6rq3UE42owKqbRloFeSjTT51YXNNcT4Mk0jbyAG1PbK+EUgs9wYBNKsQMo5BOclnbVLHgE/fmH/erD5r8/soE1OqJi+0SJaCO6As1Lko99/MU6BFE/WIjmV//bZYv0IpmOCJY02aShDA2Ebk4ZxnLbnyr9YgDM0aHxg2m/XsSeIssWoMDwIGwExHupxYO6OGoIfIBGZhJjdFiqNteYQ2megivOh8eOViYz022NiyUq79wrBYRp9ErXtla6M9QoxKhiivbIGfkR7KtDjuixee+tvf+poJcXCVaQ9zeAUQhLE4+9XBbzLZX04wrBUPdYKmwmZx8XSmLkBE93T7uoGmWOQoFZGVvQdRBLC9U8h6MJUI6QwnH6pdp/BjFp/i7lJIpsf0h5UztOvo1KDgZ+L5lXoStN3GuSroIp0IHRpDz0OTVQabRlvH/pcoFP4y1/lm3UI6iaqiGpcfQnUIJo5Z9+TafPsLqTbEE7KjwoEBxoVRqgtCqCousNN9FkA/OkU= origin@laptop.local'
 #SSH_KEY += EMAIL
 SSH_KEY_PATH = '/home/' + ADMIN_LOGIN + '/.ssh/authorized_keys'
 
 SKIP_ZONE = []
-
-
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
 
 
 def bogus():
@@ -160,7 +171,7 @@ def main_thread():
             continue
         print(f"{bcolors.OKGREEN}{str(VM_SIZE)}{bcolors.ENDC} chosen ")
         print("..................\n")
-
+        getnumber(True) ###################MULTITHREAD
         if vmtype == 'spot':
             create_vm(True)
             # bogus()
@@ -170,7 +181,7 @@ def main_thread():
         print("..................\n")
         print("Moving to next VM\n")
         print("..................\n")
-        getnumber(True)
+        #getnumber(True) --------------------MOVING TO MULTITHREAD
     print("..................\n")
     print("FINISH\n")
 
@@ -439,6 +450,7 @@ def create_vm(spot=False):
         vm_result = vm_poller.result()
 
         print_item(vm_result)
+        #getnumber(True) ###################MULTITHREAD
     except Exception as e:
         errors(e.args, False)
         print(f"{bcolors.FAIL}Failed to CREATE {VM_NAME} in {LOCATION}{bcolors.ENDC}")
