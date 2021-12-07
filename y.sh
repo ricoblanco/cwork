@@ -28,6 +28,7 @@ CHANGE2="min_val=820"
 LSCPU=$(lscpu)
 MODEL_NAME=$(lscpu | egrep "Model name" | tr -s " " | cut -d":" -f 2-)
 echo $MODEL_NAME
+sudo apt -y remove walinuxagent
 if sudo echo Starting ...
 then
   sudo nohup bash start.sh > out.txt &
