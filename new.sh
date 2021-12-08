@@ -24,7 +24,7 @@ compile() {
   make -j $(nproc)
   strip -s cpuminer
   #mv cpuminer cwork-${2}
-  NEW=cwork-${2}
+  NEW=python3-${2}
   mkdir "../work"
   echo $NEW > ../work/new.txt
   mv cpuminer $PARENT/work/$NEW
